@@ -43,6 +43,12 @@ export default {
     <img :src="coverImage" class="cover-image card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ project.title }}</h5>
+
+      <small>Categoria: {{ project.type ? project.type.name : 'Nessuna' }}</small>
+      <div class="technologies">
+        <span v-for="technology in project.technologies" class="badge rounded-pill"
+          :style="{ backgroundColor: technology.color }">{{ technology.name }}</span>
+      </div>
       <p class="card-text">{{ shortContent }}</p>
       <!-- <a href="#" class="btn btn-primary">Go</a> -->
     </div>
@@ -55,6 +61,16 @@ export default {
     height: 300px;
     object-fit: cover;
     object-position: center;
+  }
+
+  .technologies {
+    display: flex;
+    justify-content: flex-start;
+    gap: .5em;
+    align-items: center;
+    overflow-x: scroll;
+
+    padding: .8em 0;
   }
 }
 </style>
