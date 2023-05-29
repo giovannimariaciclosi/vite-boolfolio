@@ -4,7 +4,7 @@ export default {
 
   data() {
     return {
-
+      baseUrl: "http://127.0.0.1:8000/",
     }
   },
 
@@ -23,6 +23,15 @@ export default {
       }
     },
 
+    // restituisco il path completo delle cover image, se non è presente restituisco un'immagine di default
+    coverImage() {
+      if (this.project.cover_image == null) {
+        return "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
+      } else {
+        return this.baseUrl + 'storage/' + this.project.cover_image;
+      }
+    }
+
 
   },
 }
@@ -30,8 +39,8 @@ export default {
 </script>
 
 <template>
-  <div class="card">
-    <!-- <img src="..." class="card-img-top" alt="..."> -->
+  <div class="card project">
+    <img :src="coverImage" class="cover-image card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ project.title }}</h5>
       <p class="card-text">{{ shortContent }}</p>
@@ -40,4 +49,12 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.project.card {
+  .cover-image {
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+</style>
