@@ -10,6 +10,8 @@ export default {
   data() {
     return {
       projects: [],
+
+      currentPage: 1,
     }
   },
 
@@ -27,11 +29,22 @@ export default {
 
     getProjects() {
 
-      axios.get('http://127.0.0.1:8000/api/projects?page=1').then(response => {
+      axios.get('http://127.0.0.1:8000/api/projects?page=' + this.currentPage).then(response => {
         // console.log(response.data.results.data);
         this.projects = response.data.results.data;
       });
-    }
+    },
+
+
+    nextPage() {
+      this.currentPage++;
+      this.getProjects();
+    },
+
+    prevPage() {
+      this.currentPage--;
+      this.getProjects();
+    },
 
   },
 }
@@ -47,6 +60,11 @@ export default {
       <div v-for="project in projects" class="col-4 mb-3">
         <ProjectCard :project="project"></ProjectCard>
       </div>
+    </div>
+
+    <div class="d-flex justify-content-around">
+      <button @click="prevPage()" class="btn btn-primary">Prev</button>
+      <button @click="nextPage()" class="btn btn-primary">Next</button>
     </div>
   </div>
 
