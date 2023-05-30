@@ -1,11 +1,11 @@
 <script>
-
 import axios from 'axios';
 
-import ProjectCard from './ProjectCard.vue';
+import ProjectCard from '../components/ProjectCard.vue';
+
 
 export default {
-  name: 'AppMain',
+  name: 'ProjectsIndex',
 
   data() {
     return {
@@ -48,11 +48,14 @@ export default {
 
   },
 }
+
+
+
 </script>
 
 <template>
   <div v-if="projects.length > 0" class="container pt-5">
-    <h1>Tutti i progetti</h1>
+    <h1 class="text-center">I miei progetti</h1>
 
     <hr>
 

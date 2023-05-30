@@ -3,7 +3,6 @@
 
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
-import AppMain from './components/AppMain.vue';
 
 export default {
   name: "App",
@@ -13,7 +12,6 @@ export default {
 
   components: {
     AppHeader,
-    AppMain,
     AppFooter,
   }
 }
@@ -23,9 +21,9 @@ export default {
 <template>
   <AppHeader></AppHeader>
 
-  <AppMain></AppMain>
+  <router-view></router-view>
 
   <AppFooter></AppFooter>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped></style>
