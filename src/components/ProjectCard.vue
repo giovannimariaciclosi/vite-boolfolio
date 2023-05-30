@@ -57,6 +57,8 @@ export default {
 
 <style lang="scss" scoped>
 .project.card {
+  background-color: #1a222b;
+
   .cover-image {
     height: 300px;
     object-fit: cover;
@@ -68,7 +70,8 @@ export default {
     justify-content: flex-start;
     gap: .5em;
     align-items: center;
-    overflow-x: scroll;
+    flex-wrap: wrap;
+    // overflow-x: scroll;
 
     padding: .8em 0;
   }

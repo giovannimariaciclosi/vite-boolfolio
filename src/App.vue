@@ -19,11 +19,17 @@ export default {
 </script>
 
 <template>
-  <AppHeader></AppHeader>
+  <div class="app-container">
+    <AppHeader></AppHeader>
 
-  <router-view></router-view>
+    <router-view></router-view>
 
-  <AppFooter></AppFooter>
+    <AppFooter></AppFooter>
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-container {
+  background-color: #10121c;
+}
+</style>

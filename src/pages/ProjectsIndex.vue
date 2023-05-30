@@ -9,9 +9,11 @@ export default {
 
   data() {
     return {
+      apiURL: 'http://127.0.0.1:8000/api/projects',
+
       projects: [],
 
-      currentPage: 1,
+      pagination: {},
     }
   },
 
@@ -21,31 +23,24 @@ export default {
 
   created() {
 
-    this.getProjects();
+    this.getProjects(this.apiURL);
 
   },
 
   methods: {
 
-    getProjects() {
+    getProjects(apiURL) {
 
-      axios.get('http://127.0.0.1:8000/api/projects?page=' + this.currentPage).then(response => {
+      axios.get(apiURL).then(response => {
         // console.log(response.data.results.data);
+
+        // salvo i progetti
         this.projects = response.data.results.data;
+
+        // salvo le variabili di paginazione
+        this.pagination = response.data.results;
       });
     },
-
-
-    nextPage() {
-      this.currentPage++;
-      this.getProjects();
-    },
-
-    prevPage() {
-      this.currentPage--;
-      this.getProjects();
-    },
-
   },
 }
 
@@ -55,9 +50,7 @@ export default {
 
 <template>
   <div v-if="projects.length > 0" class="container pt-5">
-    <h1 class="text-center">I miei progetti</h1>
-
-    <hr>
+    <h1 class="text-center pb-5">I miei progetti</h1>
 
     <div class="row">
       <div v-for="project in projects" class="col-md-6 col-lg-4 mb-3">
@@ -65,10 +58,12 @@ export default {
       </div>
     </div>
 
-    <div class="d-flex justify-content-around">
-      <button @click="prevPage()" class="btn btn-primary">Prev</button>
-      <button @click="nextPage()" class="btn btn-primary">Next</button>
+    <div class="projects-navigation">
+      <button v-for="link in pagination.links" v-html="link.label" class="btn my-btn"
+        :class="link.active ? 'my-btn-primary' : 'btn-outline-secondary'" :disabled="link.url == null"
+        @click="getProjects(link.url)"></button>
     </div>
+
   </div>
 
   <div v-else class="loading-screen">
@@ -79,6 +74,23 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.projects-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  margin-top: 2em;
+
+  .my-btn {
+    color: white;
+  }
+
+  .my-btn-primary {
+    background-color: #574aff;
+  }
+}
+
 .loading-screen {
   display: flex;
   justify-content: center;

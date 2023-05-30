@@ -12,7 +12,7 @@ export default {
 
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg my-navbar">
       <div class="container-fluid">
         <router-link class="navbar-brand" :to="{ name: 'home' }">PORTFOLIO</router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -37,4 +37,9 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.my-navbar {
+  background-color: #10121c;
+  border-bottom: 2px solid #1a222b;
+}
+</style>
