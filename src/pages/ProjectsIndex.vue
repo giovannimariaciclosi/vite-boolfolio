@@ -60,7 +60,7 @@ export default {
     <hr>
 
     <div class="row">
-      <div v-for="project in projects" class="col-4 mb-3">
+      <div v-for="project in projects" class="col-md-6 col-lg-4 mb-3">
         <ProjectCard :project="project"></ProjectCard>
       </div>
     </div>
@@ -73,7 +73,7 @@ export default {
 
   <div v-else class="loading-screen">
     <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+      <span class="visually-hidden">Caricamento...</span>
     </div>
   </div>
 </template>
