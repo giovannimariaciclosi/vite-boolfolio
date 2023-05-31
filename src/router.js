@@ -13,7 +13,7 @@ const router = createRouter({
       name: "home",
       component: AppHome,
       meta: {
-        title: "Giovanni Maria Ciclosi | Portfolio",
+        title: "Home",
       },
     },
     {
@@ -21,7 +21,7 @@ const router = createRouter({
       name: "about",
       component: AppAbout,
       meta: {
-        title: "Chi sono | Portfolio",
+        title: "Chi sono",
       },
     },
     {
@@ -29,14 +29,25 @@ const router = createRouter({
       name: "projects.index",
       component: ProjectsIndex,
       meta: {
-        title: "I miei progetti | Portfolio",
+        title: "I miei progetti",
       },
     },
   ],
 });
 
-router.beforeEach((to, from) => {
-  document.title = to.meta?.title ?? "Giovanni Maria Ciclosi | Portfolio";
+// funzione per modificare il titolo da visualizzare per ogni pagina
+router.beforeEach((to) => {
+  // espressione non contratta
+  // if(to.meta?.title) {
+  //   document.title = 'Boolfolio | ' + to.meta.title;
+  // } else {
+  //   document.title = 'Boolfolio';
+  // }
+
+  // espressione contratta
+  document.title = to.meta?.title
+    ? "Boolfolio | " + to.meta.title
+    : "Boolfolio";
 });
 
 export { router };

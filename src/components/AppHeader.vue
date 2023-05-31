@@ -22,7 +22,7 @@ export default {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link class="nav-link active" aria-current="page" :to="{ name: 'home' }">Home</router-link>
+              <router-link class="nav-link" aria-current="page" :to="{ name: 'home' }">Home</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'projects.index' }">Progetti</router-link>
@@ -41,5 +41,10 @@ export default {
 .my-navbar {
   background-color: #10121c;
   border-bottom: 2px solid #1a222b;
+
+  .router-link-active {
+    font-weight: bold;
+    color: white;
+  }
 }
 </style>
