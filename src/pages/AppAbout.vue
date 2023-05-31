@@ -11,3 +11,7 @@ export default {
       magni laboriosam vel? Porro sint quae saepe, voluptas dolores, neque et cumque, ipsam iste molestiae culpa.</p>
   </div>
 </template>
+
+<style lang="scss" scoped>
+@use '../scss/variables.scss' as *;
+</style>

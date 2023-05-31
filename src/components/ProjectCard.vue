@@ -59,8 +59,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../scss/variables.scss' as *;
+
 .project.card {
-  background-color: #1a222b;
+  background-color: $secondary-dark;
 
   .cover-image {
     height: 300px;

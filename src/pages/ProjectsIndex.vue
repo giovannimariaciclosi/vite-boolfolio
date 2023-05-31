@@ -64,12 +64,12 @@ export default {
   <div class="container py-5">
     <h1 class="text-center pb-5">I miei progetti</h1>
 
-    <form @submit.prevent="getProjects" action="" class="d-flex">
+    <form @submit.prevent="getProjects" action="" class="d-flex gap-3">
       <select name="type_id" id="type_id" class="form-select" v-model="selectedTechnologyId">
         <option value="">Tutte</option>
         <option v-for="tipo in types" :value="tipo.id">{{ tipo.name }}</option>
       </select>
-      <button class="btn btn-primary">Filtra</button>
+      <button class="btn btn-primary my-btn-primary">Filtra</button>
     </form>
 
   </div>
@@ -99,6 +99,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../scss/variables.scss' as *;
+
 .projects-navigation {
   display: flex;
   justify-content: center;
@@ -108,11 +110,11 @@ export default {
   margin-top: 2em;
 
   .my-btn {
-    color: white;
+    color: $text-primary;
   }
 
   .my-btn-primary {
-    background-color: #574aff;
+    background-color: $accent;
   }
 }
 

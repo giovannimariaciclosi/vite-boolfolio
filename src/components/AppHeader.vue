@@ -38,13 +38,15 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../scss/variables.scss' as *;
+
 .my-navbar {
-  background-color: #10121c;
-  border-bottom: 2px solid #1a222b;
+  background-color: $primary-dark;
+  border-bottom: 2px solid $secondary-dark;
 
   .router-link-active {
     font-weight: bold;
-    color: white;
+    color: $text-primary;
   }
 }
 </style>
