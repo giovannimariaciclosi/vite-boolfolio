@@ -50,7 +50,10 @@ export default {
           :style="{ backgroundColor: technology.color }">{{ technology.name }}</span>
       </div>
       <p class="card-text">{{ shortContent }}</p>
-      <!-- <a href="#" class="btn btn-primary">Go</a> -->
+      <div class="text-center">
+        <router-link :to="{ name: 'projects.show', params: { slug: project.slug } }"
+          class="btn btn-outline-primary">Apri</router-link>
+      </div>
     </div>
   </div>
 </template>

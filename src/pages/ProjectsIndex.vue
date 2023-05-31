@@ -14,6 +14,13 @@ export default {
       projects: [],
 
       pagination: {},
+
+      types: [],
+
+      selectedTechnologyId: '',
+
+      postsFound: false,
+      isLoading: true,
     }
   },
 
@@ -31,11 +38,12 @@ export default {
 
     getProjects(apiURL) {
 
-      axios.get(apiURL).then(response => {
+      axios.get(apiURL + '&technology_id' + this.selectedTechnologyId).then(response => {
         // console.log(response.data.results.data);
 
         // salvo i progetti
         this.projects = response.data.results.data;
+        this.types = response.data.allTypes;
 
         // salvo le variabili di paginazione
         this.pagination = response.data.results;
@@ -51,6 +59,14 @@ export default {
 <template>
   <div v-if="projects.length > 0" class="container pt-5">
     <h1 class="text-center pb-5">I miei progetti</h1>
+
+    <form @submit.prevent="getProjects" action="" class="d-flex">
+      <select name="technology_id" id="technology_id" class="form-select" v-model="selectedTechnologyId">
+        <option value="">Tutte</option>
+        <option v-for="technology in technologies" :value="technology.id">{{ technology.name }}</option>
+      </select>
+      <button class="btn btn-primary">Filtra</button>
+    </form>
 
     <div class="row">
       <div v-for="project in projects" class="col-md-6 col-lg-4 mb-3">
