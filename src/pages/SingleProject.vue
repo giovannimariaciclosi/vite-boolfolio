@@ -10,15 +10,13 @@ export default {
 
       baseUrl: 'http://127.0.0.1:8000/',
 
-      isLoading: false,
+      isLoading: true,
       projectFound: false,
 
-      projectSlug: '',
     }
   },
 
   mounted() {
-    this.projectSlug = this.$route.params.slug;
   },
 
   computed: {
@@ -27,20 +25,26 @@ export default {
     }
   },
 
+  created() {
+
+    this.getProject();
+
+  },
+
   methods: {
 
     getProject() {
-      axios.get(this.baseUrl + 'api/projects/' + this.projectSlug).then(response => {
+      axios.get(this.baseUrl + 'api/projects/' + this.$route.params.slug).then(response => {
+
+        this.isLoading = false;
 
         if (response.data.success) {
 
           this.project = response.data.project;
-          this.isLoading = false;
           this.projectFound = true;
 
         } else {
 
-          this.isLoading = false;
           this.projectFound = false;
 
         }
@@ -72,13 +76,13 @@ export default {
       <h4>{{ project.type ? project.type.name : 'Nessun tipo' }}</h4>
       <hr>
       <p>{{ project.description }}</p>
+      <router-link class="btn btn-outline-primary" :to="{ name: 'projects.index' }">Torna indietro</router-link>
 
     </div>
 
     <div v-else>
       <div class="alert alert-danger">Nessun progetto trovato</div>
     </div>
-
   </div>
 </template>
 
@@ -88,15 +92,12 @@ export default {
   justify-content: center;
   align-items: center;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 600px;
+  height: 100%;
+  min-height: 600px;
 }
 
 .project-image img {
-  max-height: 200px;
+  max-height: 400px;
   object-fit: cover;
 }
 

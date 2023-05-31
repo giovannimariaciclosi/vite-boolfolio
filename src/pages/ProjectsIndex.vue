@@ -24,6 +24,9 @@ export default {
     }
   },
 
+  mounted() {
+  },
+
   components: {
     ProjectCard,
   },
@@ -37,13 +40,14 @@ export default {
   methods: {
 
     getProjects(apiURL) {
-
-      axios.get(apiURL + '&technology_id' + this.selectedTechnologyId).then(response => {
+      // + '&technology_id' + this.selectedTechnologyId
+      axios.get(apiURL).then(response => {
         // console.log(response.data.results.data);
 
         // salvo i progetti
         this.projects = response.data.results.data;
         this.types = response.data.allTypes;
+        console.log(response.data)
 
         // salvo le variabili di paginazione
         this.pagination = response.data.results;
@@ -57,16 +61,21 @@ export default {
 </script>
 
 <template>
-  <div v-if="projects.length > 0" class="container pt-5">
+  <div class="container py-5">
     <h1 class="text-center pb-5">I miei progetti</h1>
 
     <form @submit.prevent="getProjects" action="" class="d-flex">
-      <select name="technology_id" id="technology_id" class="form-select" v-model="selectedTechnologyId">
+      <select name="type_id" id="type_id" class="form-select" v-model="selectedTechnologyId">
         <option value="">Tutte</option>
-        <option v-for="technology in technologies" :value="technology.id">{{ technology.name }}</option>
+        <option v-for="tipo in types" :value="tipo.id">{{ tipo.name }}</option>
       </select>
       <button class="btn btn-primary">Filtra</button>
     </form>
+
+  </div>
+
+  <div v-if="projects.length > 0" class="container">
+
 
     <div class="row">
       <div v-for="project in projects" class="col-md-6 col-lg-4 mb-3">
